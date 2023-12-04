@@ -25,10 +25,12 @@ function getTrafficSource() {
       concatString = "source=inconnu"
     }
   }
+  
+  let sourceValue = concatString.match(/source=([^&]*)/)[1];
 
   return {
     concatString: concatString,
-    source: source
+    source: sourceValue
   }
 }
       
