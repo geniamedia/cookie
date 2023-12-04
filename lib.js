@@ -1,16 +1,16 @@
 (function(){
-// Fonction pour connaître l'origine de l'utilisateur'
+// Fonction pour connaître l'origine de l'utilisateur
 function getTrafficSource() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var source = urlParams.get('utm_source') || urlParams.get('mtm_source') || urlParams.get('gm_source');
-  var medium = urlParams.get('utm_medium') || urlParams.get('mtm_medium') || urlParams.get('gm_medium');
-  var campaign = urlParams.get('utm_campaign') || urlParams.get('mtm_campaign') || urlParams.get('gm_campaign');
-  var audience = urlParams.get('gm_audience');
-  var remarketing = urlParams.get('gm_remarketing');
+  const urlParams = new URLSearchParams(window.location.search);
+  const source = urlParams.get('utm_source') || urlParams.get('mtm_source') || urlParams.get('gm_source');
+  const medium = urlParams.get('utm_medium') || urlParams.get('mtm_medium') || urlParams.get('gm_medium');
+  const campaign = urlParams.get('utm_campaign') || urlParams.get('mtm_campaign') || urlParams.get('gm_campaign');
+  const audience = urlParams.get('gm_audience');
+  const remarketing = urlParams.get('gm_remarketing');
   // Ajouter d'autres paramètres si nécessaire
 
-  var referrerDomain = new URL(document.referrer).hostname.replace(/^www\./i, "");
-  var concatString = null
+  const referrerDomain = new URL(document.referrer).hostname.replace(/^www\./i, "");
+  let concatString = null
 
   if (source) {
     concatString = `source=${source}&medium=${medium || 'inconnu'}&campaign=${campaign || 'inconnu'}&audience=${audience || 'inconnu'}&remarketing=${remarketing || 'inconnu'}`;
@@ -61,7 +61,7 @@ function setCookie(params) {
               
 // Fonction principale pour créer ou mettre à jour le cookie
 function createOrUpdateCookie() {
-    var params = {
+    let params = {
         id: null,
         sessionId: null,
         sessionNumber: null,
@@ -75,8 +75,8 @@ function createOrUpdateCookie() {
         time: null,
     };
 
-    var maxSessionDuration = 12 * 60 * 60 * 1000
-    var cookie = document.cookie.replace(/(?:(?:^|.*;\s*)_gm\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    let maxSessionDuration = 12 * 60 * 60 * 1000
+    let cookie = document.cookie.replace(/(?:(?:^|.*;\s*)_gm\s*=\s*([^;]*).*$)|^.*$/, "$1");
 
     if (!cookie) {
         // Le cookie n'existe pas, initialiser les valeurs
@@ -92,7 +92,7 @@ function createOrUpdateCookie() {
         setCookie(params);
     } else {
         // Le cookie existe, mettre à jour les valeurs
-        var existingParams = JSON.parse(cookie);
+        let existingParams = JSON.parse(cookie);
 
         if (getTimeSpent(existingParams.time) >= maxSessionDuration) {
             // Nouvelle session
