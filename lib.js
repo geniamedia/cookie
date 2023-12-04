@@ -118,4 +118,5 @@ function createOrUpdateCookie() {
 
 // Appeler la fonction principale pour créer ou mettre à jour le cookie
 createOrUpdateCookie();
+console.log('tag manager working')
 })()
