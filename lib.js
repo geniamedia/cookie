@@ -77,7 +77,7 @@ function createOrUpdateCookie() {
         time: null,
     };
 
-    let maxSessionDuration = 12 * 60 * 60 * 1000
+    let maxSessionDuration = 24 * 60 * 60 * 1000
     let cookie = document.cookie.replace(/(?:(?:^|.*;\s*)_gm\s*=\s*([^;]*).*$)|^.*$/, "$1");
 
     if (!cookie) {
