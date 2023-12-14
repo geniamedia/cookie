@@ -9,7 +9,7 @@ function getTrafficSource() {
   const remarketing = urlParams.get('gm_remarketing');
   // Ajouter d'autres paramètres si nécessaire
 
-  const referrerDomain = new URL(document.referrer).hostname.replace(/^www\./i, "");
+  const referrerDomain = new URL(document.referrer).hostname.replace(/^www\./i, "") || "";
   let concatString = null
 
   if (source) {
@@ -19,7 +19,7 @@ function getTrafficSource() {
       concatString = "source=organique&medium=google.com";
     } else if (referrerDomain.includes("bing.com")) {
       concatString = "source=organique&medium=bing.com";
-    } else if (referrerDomain) {
+    } else if (referrerDomain != "") {
       concatString = `source=referral&medium=${referrerDomain}`;
     } else {
       concatString = "source=inconnu"
